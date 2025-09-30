@@ -1,17 +1,20 @@
 'use strict';
 
-const table = document.querySelector('table');
+document.addEventListener('DOMContentLoaded', () => {
+  const table = document.querySelector('table');
 
-for (const row of table.rows) {
-  if (row.cells.length < 2) {
-    continue;
+  if (!table) {
+    return;
   }
 
-  const clone = row.cells[1].cloneNode(true);
-  const lastCell = row.cells[row.cells.length - 1];
+  for (const row of table.rows) {
+    if (row.cells.length < 2) {
+      continue;
+    }
 
-  if (!lastCell) {
-    continue;
+    const clone = row.cells[1].cloneNode(true);
+    const lastCell = row.cells[row.cells.length - 1];
+
+    row.insertBefore(clone, lastCell);
   }
-  row.insertBefore(clone, lastCell);
-}
+});
